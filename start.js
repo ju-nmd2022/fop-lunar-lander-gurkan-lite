@@ -129,7 +129,6 @@ function draw() {
   //   } Rotation may not be necessary for this game
 }
 
-// The following code is borrowed from Linus Isaksson
 function StartGame() {
   background(154, 195, 208);
   fill(255, 255, 255);
@@ -175,21 +174,6 @@ function gamePlay() {
   } else {
     speed = 0;
   }
-  if (grokeY >= 460 && speed > 3) {
-    console.log("lose");
-    speed = 1;
-    acceleration = 0.2;
-
-    state = "lose";
-    grokeY = 100;
-  } else if (grokeY >= 460 && speed < 3) {
-    speed = 1;
-    acceleration = 0.2;
-
-    state = "win";
-    grokeY = 100;
-    // console.log("win");
-  }
 }
 
 function draw() {
@@ -214,3 +198,19 @@ function keyPressed() {
     state = "game";
   }
 }
+// if (manY >= 460 && speed > 3) {
+//     console.log("lose");
+//     speed = 1;
+//     acceleration = 0.2;
+
+//     state = "lose";
+//     manY = 100;
+//     // Basically att den faller för fort du förlorar
+//   } else if (manY >= 460 && speed < 3) {
+//     speed = 1;
+//     acceleration = 0.2;
+
+//     state = "win";
+//     manY = 100;
+//     // console.log("win"); den faller tillräckligt snabbt, du vinner
+//   }
