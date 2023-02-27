@@ -95,39 +95,9 @@ let gameState = "start";
 
 acceleration = 0.1;
 
-function draw() {
-  world(1, 1);
-  groke(x - 130, grokeY, rotation);
-
-  x = x + Math.cos(rotation) * speed;
-  y = y + Math.sin(rotation) * speed;
-
-  if (isGameActive) {
-    grokeY = grokeY + velocity;
-    velocity = velocity + acceleration;
-
-    if (keyIsPressed && key == " ") {
-      velocity = velocity - 0.4;
-    }
-
-    if (grokeY > 350) {
-      isGameActive = false;
-    }
-  }
-
-  if (keyIsDown(39)) {
-    speed = 5;
-  } else if (keyIsDown(37)) {
-    speed = -5;
-  } else {
-    speed = 0;
-  }
-  //   if (keyIsDown(38)) {
-  //     rotation = rotation - 0.01;
-  //   } else if (keyIsDown(40)) {
-  //     rotation = rotation + 0.01;
-  //   } Rotation may not be necessary for this game
-}
+// Cordinates where u land to win
+let landingX = 560;
+let landingY = 450;
 
 // The following code is borrowed from Linus Isaksson
 function StartGame() {
@@ -175,42 +145,52 @@ function gamePlay() {
   } else {
     speed = 0;
   }
-  if (grokeY >= 460 && speed > 3) {
-    console.log("lose");
-    speed = 1;
-    acceleration = 0.2;
-
-    state = "lose";
-    grokeY = 100;
-  } else if (grokeY >= 460 && speed < 3) {
-    speed = 1;
-    acceleration = 0.2;
-
-    state = "win";
-    grokeY = 100;
-    // console.log("win");
+  console.log(grokeY);
+  if (grokeY >= 350) {
+    if (x > 485 && x < 635) {
+      state = "win";
+      console.log("win");
+      WinWin();
+    } else {
+      state = "lose";
+      console.log("lose");
+      LoseLose();
+    }
   }
 }
-
+//win
+function WinWin() {
+  background(255, 250, 0);
+  text("YOU MADE IT!", 250, 250);
+  console.log("win");
+  state = "win";
+}
+// lost
+function LoseLose() {
+  background(255, 50, 0);
+  text("Try again!", 300, 300);
+  console.log("lose");
+  state = "lose";
+}
 function draw() {
   if (state === "start") {
     StartGame();
   } else if (state === "game") {
     gamePlay();
   } else if (state === "win") {
-    WinScreen();
+    WinWin();
   } else if (state === "lose") {
-    LoseScreen();
+    LoseLose();
   }
 }
-function keyPressed() {
-  console.log(keyCode);
-  if (state === "start" && keyCode === 32) {
+// the following code has been adapted from Jennelie Cohen
+function mouseClicked() {
+  if (state === "start") {
     state = "game";
-  } else if (state === "lose" && keyCode === 32) {
+  } else if (state === "lose") {
     state = "game";
     // console.log("game");
-  } else if (state === "win" && keyCode === 32) {
+  } else if (state === "win") {
     state = "game";
   }
 }
