@@ -129,7 +129,7 @@ function gamePlay() {
     grokeY = grokeY + velocity;
     velocity = velocity + acceleration;
 
-    if (keyIsPressed && key == " ") {
+    if (keyIsDown(32)) {
       velocity = velocity - 0.4;
     }
 
@@ -167,7 +167,7 @@ function WinWin() {
 }
 // lost
 function LoseLose() {
-  background(255, 50, 0);
+  background(30, 50, 0);
   text("Try again!", 300, 300);
   console.log("lose");
   state = "lose";
@@ -183,14 +183,14 @@ function draw() {
     LoseLose();
   }
 }
-// the following code has been adapted from Jennelie Cohen
-function mouseClicked() {
-  if (state === "start") {
-    state = "game";
-  } else if (state === "lose") {
-    state = "game";
-    // console.log("game");
-  } else if (state === "win") {
-    state = "game";
+function keyPressed() {
+  console.log(keyCode);
+  if (state !== "game" && keyCode === 32) {
+    x = 150;
+    grokeY = 30;
+    velocity = 1;
+    isGameActive = true;
+    if (state === "start") state = "game";
+    else state = "start";
   }
 }
