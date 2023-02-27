@@ -83,7 +83,7 @@ acceleration = 0.1;
 
 function draw() {
   world(1, 1);
-  groke(x, grokeY, rotation);
+  groke(x - 130, grokeY, rotation);
 
   x = x + Math.cos(rotation) * speed;
   y = y + Math.sin(rotation) * speed;
@@ -92,25 +92,27 @@ function draw() {
     grokeY = grokeY + velocity;
     velocity = velocity + acceleration;
 
-    if (mouseIsPressed) {
-      velocity = velocity - 0.2;
+    if (keyIsPressed && key == " ") {
+      velocity = velocity - 0.4;
     }
 
-    if (grokeY > 200) {
+    if (grokeY > 250) {
       isGameActive = false;
     }
   }
 
-  if (keyIsDown(38)) {
-    speed = 5;
-  } else if (keyIsDown(40)) {
+  if (keyIsDown(37)) {
+    speed = 6;
+  } else if (keyIsDown(39)) {
     speed = -5;
   } else {
     speed = 0;
   }
-  if (keyIsDown(37)) {
-    rotation = rotation - 0.05;
-  } else if (keyIsDown(39)) {
-    rotation = rotation + 0.05;
+  if (keyIsDown(38)) {
+    rotation = rotation - 0.01;
+  } else if (keyIsDown(40)) {
+    rotation = rotation + 0.01;
   }
 }
+
+let gameState = "start";
