@@ -1,3 +1,7 @@
+function setup() {
+  createCanvas(800, 600);
+}
+
 let state = "start";
 
 // world
