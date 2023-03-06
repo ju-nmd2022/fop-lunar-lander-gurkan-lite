@@ -8,7 +8,7 @@ function preload() {
 
 function setup() {
   createCanvas(900, 550);
-  frameRate(55);
+  frameRate(56);
 }
 
 let state = "start";
