@@ -1,5 +1,14 @@
+let img1;
+let img;
+
+function preload() {
+  img = loadImage("./morran.jpeg");
+  img1 = loadImage("./moomin.jpeg");
+}
+
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(900, 550);
+  frameRate(55);
 }
 
 let state = "start";
@@ -176,12 +185,6 @@ function WinWin() {
   image(img, 40, 65);
 }
 
-let img;
-
-function setup() {
-  img = loadImage("morran.jpeg");
-  img1 = loadImage("moomin.jpeg");
-}
 // lost, The following code was conducted from here: https://p5js.org/examples/image-load-and-display-image.html
 function LoseLose() {
   background(250, 50, 0, 30);
@@ -193,8 +196,6 @@ function LoseLose() {
   state = "lose";
   image(img1, 250, 165);
 }
-
-let img1;
 
 function draw() {
   if (state === "start") {
